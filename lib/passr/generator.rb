@@ -10,8 +10,8 @@ module Passr
     #
     # @param [Integer] length length of characters for generated password
     # @return [String] generated password of give length
-    def self.password(length = 15)
-      length = 15 if length > 40
+    def self.password(length)
+      length = 15 if length.nil? || length.to_i > 40
       generated = Array.new(length).map { random_character }.join('')
       sanitize(generated)
     end
