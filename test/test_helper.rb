@@ -9,4 +9,5 @@ end
 
 require 'passr'
 require 'passr/encryptor'
+require 'passr/generator'
 require 'minitest/autorun'

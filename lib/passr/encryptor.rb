@@ -3,6 +3,7 @@ require 'base64'
 require 'rbnacl/libsodium'
 
 module Passr
+  # Path searching for yaml file containing encryption information
   PATH = File.expand_path('./config/encryptor.yml')
 
   class Encryptor
