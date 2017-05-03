@@ -1,5 +1,6 @@
 require 'yaml'
 require 'base64'
+require 'fileutils'
 require 'rbnacl/libsodium'
 
 module Passr
@@ -10,12 +11,12 @@ module Passr
     attr_reader :raw_nonce
 
     def initialize(nonce = nil)
-      @secret_key = load_secret_key || generate_secret_key
+      @secret_key = load_secret_key || Encryptor.generate_secret_key
       @secret_box = create_secret_box
       @raw_nonce = get_raw_nonce(nonce)
     end
 
-    def generate_secret_key
+    def self.generate_secret_key
       key = RbNaCl::Random.random_bytes(RbNaCl::SecretBox.key_bytes)
       File.open(PATH, 'w') do |f|
         f.write "---\nSECRET_KEY: #{Base64.encode64(key)}"
@@ -35,6 +36,15 @@ module Passr
 
     def nonce
       Base64.encode64(raw_nonce).chomp
+    end
+
+    def self.install
+      unless File.exists? PATH
+        FileUtils::mkdir_p File.expand_path('./config/')
+        generate_secret_key unless File.exists? PATH
+      else
+        raise RuntimeError, "./config/encryptor.yml already exists."
+      end
     end
 
     private

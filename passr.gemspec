@@ -37,5 +37,5 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency "simplecov", "0.14.1"
   spec.add_development_dependency "yard", "0.9.9"
   spec.add_dependency "rbnacl-libsodium", "1.0.11"
-
+  spec.add_dependency "thor"
 end
