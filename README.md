@@ -2,11 +2,11 @@
 [![Gem Version](https://badge.fury.io/rb/passr.png)](https://rubygems.org/gems/passr)
 [![Build Status](https://travis-ci.org/rdavid1099/passr.png?branch=master)](https://travis-ci.org/rdavid1099/passr)
 [![Contributions Welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat)](https://github.com/rdavid1099/passr/issues)
-[![Coverage Status](https://coveralls.io/r/rdavid1099/passr)](https://coveralls.io/repos/rdavid1099/passr/badge.png?branch=master)
+[![Coverage Status](https://coveralls.io/repos/rdavid1099/passr/badge.png?branch=master)](https://coveralls.io/r/rdavid1099/passr)
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/passr`. To experiment with that code, run `bin/console` for an interactive prompt.
+:lock: "If you're able to memorize your passwords, you're doing it wrong."
 
-TODO: Delete this and the text above, and describe your gem
+Passr is a simple Ruby gem handling password generation, encryption and decryption.
 
 ## Installation
 
@@ -26,7 +26,7 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+After installing the gem, from the project's root folder run `bundle exec passr install` to generate a secret encryption key. This key will be saved to the file `./config/encryptor.yml` and add it to the project's `.gitignore`. This file must be present for encryption and decryption. Be sure to make a backup of this key. If it is ever moved or deleted from the project, all encrypted passwords will be lost forever.
 
 ## Development
 
@@ -36,7 +36,7 @@ To install this gem onto your local machine, run `bundle exec rake install`. To 
 
 ## Contributing
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/[USERNAME]/passr.
+Contributions are welcome! Be sure to read our [contributing guide](https://github.com/rdavid1099/passr/blob/master/CONTRIBUTING.md) before working on an issue. Bug reports and pull requests are welcome on GitHub at https://github.com/rdavid1099/passr.
 
 
 ## License
