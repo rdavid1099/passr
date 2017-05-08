@@ -1,11 +1,11 @@
 module Passr
-  # 2-D array of all possible characters that can be used in a password
-  CHARACTERS = [['!','$','%','+','/','=','@','~'],
-                ('0'..'9').to_a,
-                ('a'..'z').to_a]
-
   # Handles account/ username creation and respective password generation
   class Generator
+    # 2-D array of all possible characters that can be used in a password
+    CHARACTERS = [['!','$','%','+','/','=','@','~'],
+                  ('0'..'9').to_a,
+                  ('a'..'z').to_a]
+
     # Generates password of given length
     #
     # @param [Integer] length length of characters for generated password
@@ -22,9 +22,9 @@ module Passr
     # @param [String] password pre-sanitized/ initially generated password
     # @return [String] sanitized and completely unique password
     def self.sanitize(password)
-      password.add_special!(CHARACTERS[0]) if password.scan(/[!@#$%^&*()]/).empty?
-      password.add_number!(CHARACTERS[1]) if password.scan(/[0-9]/).empty?
-      password.add_capital_letter!(CHARACTERS[2]) if password.scan(/[A-Z]/).empty?
+      password.add_special! if password.scan(/[!@#$%^&*()]/).empty?
+      password.add_number! if password.scan(/[0-9]/).empty?
+      password.add_capital_letter! if password.scan(/[A-Z]/).empty?
       password.unique_chars!
       sanitize(password) unless is_sanitary?(password)
       return password
@@ -85,7 +85,8 @@ class String
   #
   # @param [Array] special_chars list of special characters
   # @return [String] replaces self with a special character in the place another random character
-  def add_special!(special_chars)
+  def add_special!
+    special_chars = ['!','$','%','+','/','=','@','~']
     sanitized = self
     sanitized[rand(sanitized.length)] = special_chars[rand(special_chars.length)]
     self.replace(sanitized)
@@ -95,7 +96,8 @@ class String
   #
   # @param [Array] numbers list of numbers, preferably single digits (0-9)
   # @return [String] replaces self with a number in the place another random character
-  def add_number!(numbers)
+  def add_number!
+    numbers = (0..9).to_a
     sanitized = self
     sanitized[rand(sanitized.length)] = numbers[rand(numbers.length)]
     self.replace(sanitized)
@@ -105,7 +107,8 @@ class String
   #
   # @param [Array] letters list of letters, preferably entire lowercase alphabet (a-z)
   # @return [String] replaces self with an upper case letter in the place another random character
-  def add_capital_letter!(letters)
+  def add_capital_letter!
+    letters = ('a'..'z').to_a
     sanitized = self
     sanitized[rand(sanitized.length)] = letters[rand(letters.length)].upcase
     self.replace(sanitized)
