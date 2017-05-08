@@ -24,9 +24,52 @@ Or install it yourself as:
 
     $ gem install passr
 
+After installing the gem, from the project's root folder run `bundle exec passr install` to generate a secret encryption key. This key will be saved to the file `./config/encryptor.yml` and add it to the project's `.gitignore`. This file must be present for encryption and decryption. Be sure to make a backup of this key. If it is ever moved or deleted from the project, all encrypted passwords will be lost forever.
+
 ## Usage
 
-After installing the gem, from the project's root folder run `bundle exec passr install` to generate a secret encryption key. This key will be saved to the file `./config/encryptor.yml` and add it to the project's `.gitignore`. This file must be present for encryption and decryption. Be sure to make a backup of this key. If it is ever moved or deleted from the project, all encrypted passwords will be lost forever.
+### Generating Encrypted Passwords
+
+Using Passr is a simple as requiring the gem and calling `Passr.generate`. The method will return a Hash containing the `:password`, `:nonce`, and `:encrypted_password`.
+- `:password` is the unencrypted generated password.
+- `:encrypted_password` is the encrypted generated password using the secret key stored in `./config/encryption.yml` and the nonce.
+- `:nonce` is the nonce used to create the encrypted password. The nonce must be saved and provided for decryption.
+
+`Passr.generate` has multiple options that can be passed in as arguments to customize the generated passwords.
+- `:length` will create a generated password with the given number of characters. Length defaults to 15 characters and must be under 40 characters.
+- `:nonce` will create an encryption of the generated password using the given nonce. It will throw an error if the nonce is not compatible with the secret key saved in `./config/encryption.yml`.
+
+```ruby
+require 'passr'
+
+Passr.generate
+# => {:password => "$4!~j9t=18%f+@I",
+#     :encrypted_password => "XnShJLuUyArMMkMQNeQismHLukTeRa1LMJHRc39Avw==",
+#     :nonce => "ee/1Z2YlXVkqmPn1CRPtukTzMa4fNh99"}
+
+Passr.generate(length: 20,
+               nonce: "ee/1Z2YlXVkqmPn1CRPtukTzMa4fNh99")
+# => {:nonce => "ee/1Z2YlXVkqmPn1CRPtukTzMa4fNh99",
+#     :password => "l~qy5g!j78=ndx2614N@",
+#     :encrypted_password => "ZYrISzJiNpn2JpB+FrEgeymB6kOBG/gcNpHJezB4xPV3eXjV"}
+```
+
+### Decrypting Passwords
+
+Simply decrypt any generated passwords calling `Passr.reveal` and passing in the encrypted password and the nonce used to encrypt the password as arguments and it will return the decrypted password as a String.
+
+```ruby
+require 'passr'
+
+Passr.generate
+# => {:password => "$4!~j9t=18%f+@I",
+#     :encrypted_password => "XnShJLuUyArMMkMQNeQismHLukTeRa1LMJHRc39Avw==",
+#     :nonce => "ee/1Z2YlXVkqmPn1CRPtukTzMa4fNh99"}
+
+Passr.reveal(password: "XnShJLuUyArMMkMQNeQismHLukTeRa1LMJHRc39Avw==",
+             nonce: "ee/1Z2YlXVkqmPn1CRPtukTzMa4fNh99")
+# => "$4!~j9t=18%f+@I"
+```
 
 ## Development
 
