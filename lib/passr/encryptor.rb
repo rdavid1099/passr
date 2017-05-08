@@ -11,7 +11,7 @@ module Passr
     attr_reader :raw_nonce
 
     def initialize(nonce = nil)
-      @secret_key = load_secret_key || Encryptor.generate_secret_key
+      @secret_key = load_secret_key || Encryptor.install
       @secret_box = create_secret_box
       @raw_nonce = get_raw_nonce(nonce)
     end
