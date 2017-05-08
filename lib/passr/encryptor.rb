@@ -41,8 +41,8 @@ module Passr
     def self.install
       unless File.exists? PATH
         FileUtils::mkdir_p File.expand_path('./config/')
-        generate_secret_key
         update_gitignore
+        generate_secret_key
       else
         raise RuntimeError, "./config/encryptor.yml already exists."
       end
