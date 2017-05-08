@@ -41,9 +41,19 @@ module Passr
     def self.install
       unless File.exists? PATH
         FileUtils::mkdir_p File.expand_path('./config/')
-        generate_secret_key unless File.exists? PATH
+        generate_secret_key
+        update_gitignore
       else
         raise RuntimeError, "./config/encryptor.yml already exists."
+      end
+    end
+
+    def self.update_gitignore
+      gitignore = File.expand_path('./.gitignore')
+      unless File.read(gitignore).split("\n").include?('/config/encryptor.yml')
+        open(gitignore, 'a') do |f|
+          f << "\n# Ignore Passr Encryption Configuration\n/config/encryptor.yml"
+        end
       end
     end
 
