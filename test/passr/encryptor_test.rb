@@ -39,4 +39,19 @@ class EncryptorTest < Minitest::Test
     assert File.read(gitignore).split("\n").include?('/config/encryptor.yml')
     assert File.exists?(encryptor)
   end
+  
+  def test_it_throws_error_if_already_installed
+    exception = assert_raises RuntimeError do
+      Passr::Encryptor.install
+    end
+    
+    assert_equal './config/encryptor.yml already exists.', exception.message
+  end
+  
+  def test_load_secret_key_returns_false_if_file_does_not_exist
+    encryptor = File.expand_path('./config/encryptor.yml')
+    File.delete(encryptor) if File.exists?(encryptor)
+    
+    refute @encrypt.send(:load_secret_key)
+  end
 end
