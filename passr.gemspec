@@ -10,20 +10,11 @@ Gem::Specification.new do |spec|
   spec.email         = ["rdavid1099@gmail.com"]
 
   spec.summary       = %q{Generates random passwords of a given length encrypted using RbNaCl}
-  spec.description   = %q{}
-  spec.homepage      = "https://github.com/rdavid1099/rypass"
+  spec.description   = %q{Passr is a simple Ruby gem handling password generation, encryption and decryption.}
+  spec.homepage      = "https://github.com/rdavid1099/passr"
   spec.license       = "MIT"
   spec.bindir        = "exe"
   spec.has_rdoc      = "yard"
-
-  # Prevent pushing this gem to RubyGems.org. To allow pushes either set the 'allowed_push_host'
-  # to allow pushing to a single host or delete this section to allow pushing to any host.
-  if spec.respond_to?(:metadata)
-    spec.metadata['allowed_push_host'] = "TODO: Set to 'http://mygemserver.com'"
-  else
-    raise "RubyGems 2.0 or newer is required to protect against " \
-      "public gem pushes."
-  end
 
   spec.files         = `git ls-files -z`.split("\x0").reject do |f|
     f.match(%r{^(test|spec|features)/})
