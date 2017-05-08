@@ -8,3 +8,6 @@
 /spec/reports/
 /tmp/
 /config/
+
+# Ignore Passr Encryption Configuration
+/config/encryptor.yml
