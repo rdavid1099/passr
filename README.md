@@ -1,8 +1,8 @@
 # Passr
-[![Gem Version][https://badge.fury.io/rb/passr.png]][https://rubygems.org/gems/passr]
+[![Gem Version](https://badge.fury.io/rb/passr.png)][https://rubygems.org/gems/passr]
 [![Build Status](https://travis-ci.org/rdavid1099/passr.png?branch=master)](https://travis-ci.org/rdavid1099/passr)
 [![Contributions Welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat)](https://github.com/rdavid1099/passr/issues)
-[![Coverage Status][https://coveralls.io/r/rdavid1099/passr]][https://coveralls.io/repos/rdavid1099/passr/badge.png?branch=master]
+[![Coverage Status](https://coveralls.io/r/rdavid1099/passr)][https://coveralls.io/repos/rdavid1099/passr/badge.png?branch=master]
 
 Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/passr`. To experiment with that code, run `bin/console` for an interactive prompt.
 
