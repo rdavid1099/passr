@@ -2,7 +2,7 @@
 [![Gem Version](https://badge.fury.io/rb/passr.png)](https://rubygems.org/gems/passr)
 [![Build Status](https://travis-ci.org/rdavid1099/passr.png?branch=master)](https://travis-ci.org/rdavid1099/passr)
 [![Contributions Welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat)](https://github.com/rdavid1099/passr/issues)
-[![Coverage Status](https://coveralls.io/repos/github/rdavid1099/passr/badge.svg?branch=master)](https://coveralls.io/github/rdavid1099/passr?branch=master
+[![Coverage Status](https://coveralls.io/repos/github/rdavid1099/passr/badge.svg?branch=master)](https://coveralls.io/github/rdavid1099/passr?branch=master)
 
 :lock: "If you're able to memorize your passwords, you're doing it wrong."
 
